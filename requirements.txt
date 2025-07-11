@@ -6,3 +6,4 @@ scikit-learn
 pillow
 tensorflow
 mlflow
+uvicorn
