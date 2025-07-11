@@ -1,1 +1,8 @@
-Hello, world!
+torch
+torchvision
+matplotlib
+numpy
+scikit-learn
+pillow
+tensorflow
+mlflow
