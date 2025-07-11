@@ -2,7 +2,9 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY app.py /app/
+# Copy app.py from api folder into /app inside the container
+COPY api/app.py /app/
+
 COPY requirements.txt /app/
 
 RUN apt-get update && apt-get install -y \
