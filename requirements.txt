@@ -1,9 +1,6 @@
-torch
-torchvision
-matplotlib
-numpy
-scikit-learn
-pillow
-tensorflow
-mlflow
-uvicorn
+fastapi==0.111.0
+uvicorn==0.29.0
+torch==2.2.2
+torchvision==0.17.2
+pillow==10.3.0
+mlflow==2.13.0
