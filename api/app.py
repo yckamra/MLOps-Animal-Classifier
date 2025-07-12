@@ -12,7 +12,14 @@ app = FastAPI()
 MODEL_URI = "gs://mlops-animal-classifier/models/models/m-f2878fa41e5c4dc089e112c447a862ab/artifacts"
 
 # Load model from MLflow or GCS (make sure you have authentication set up)
-model = mlflow.pytorch.load_model(MODEL_URI)
+def load_model_cpu(uri):
+    local_path = mlflow.artifacts.download_artifacts(uri)
+    model = torch.load(local_path, map_location=torch.device('cpu'))
+    model.eval()
+    return model
+
+model = load_model_cpu(MODEL_URI)
+
 model.eval()
 
 # Image preprocessing pipeline
