@@ -1,0 +1,32 @@
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: mlops-animal-classifier
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker northamerica-northeast1-docker.pkg.dev
+
+      - name: Build and push Docker image
+        run: |
+          IMAGE=northamerica-northeast1-docker.pkg.dev/mlops-animal-classifier/mlops-animal-classifier-docker-images/animal-classifier:${{ github.sha }}
+          docker build -t $IMAGE .
+          docker push $IMAGE
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy animal-classifier-service \
+            --image $IMAGE \
+            --region northamerica-northeast1 \
+            --platform managed \
+            --allow-unauthenticated
