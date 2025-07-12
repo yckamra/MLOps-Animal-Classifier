@@ -25,6 +25,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           IMAGE=northamerica-northeast1-docker.pkg.dev/mlops-animal-classifier/mlops-animal-classifier-docker-images/animal-classifier:${{ github.sha }}
+          echo "Using IMAGE=$IMAGE"
           docker build -t $IMAGE .
           docker push $IMAGE
 
@@ -35,4 +36,5 @@ jobs:
             --image $IMAGE \
             --region northamerica-northeast1 \
             --platform managed \
+            --service-account 52010579282-compute@developer.gserviceaccount.com \
             --allow-unauthenticated
