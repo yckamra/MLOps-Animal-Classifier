@@ -9,7 +9,7 @@ import io
 app = FastAPI()
 
 # Model URI (GCS path)
-MODEL_URI = "gs://mlops-animal-classifier/models/models/m-f2878fa41e5c4dc089e112c447a862ab/artifacts"
+MODEL_URI = "gs://mlops-animal-classifier/models/models/m-f2878fa41e5c4dc089e112c447a862ab/artifacts/data/model.pth"
 
 # Load model from MLflow or GCS (make sure you have authentication set up)
 def load_model_cpu(uri):
