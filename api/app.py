@@ -32,7 +32,7 @@ transform = transforms.Compose([
                          std=[0.229, 0.224, 0.225]),
 ])
 
-@app.get("/")
+@app.get("/hello_world")
 async def hello_world():
     return {"message" : "Hello, world!"}
 
