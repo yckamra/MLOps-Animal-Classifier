@@ -6,6 +6,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 import io
 
+
 app = FastAPI()
 
 # Model URI (GCS path)
