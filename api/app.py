@@ -24,6 +24,10 @@ transform = transforms.Compose([
                          std=[0.229, 0.224, 0.225]),
 ])
 
+@app.get("/")
+async def hello_world():
+    return {"message" : "Hello, world!"}
+
 @app.post("/predict")
 async def predict(image: UploadFile = File(...)):
     contents = await image.read()
