@@ -4,3 +4,5 @@ torch==2.2.2
 torchvision==0.17.2
 pillow==10.3.0
 mlflow==2.13.0
+google-cloud-storage==2.16.0
+google-auth==2.29.0
