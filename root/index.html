@@ -21,34 +21,43 @@
 </div>
 <script>
 
-    document.getElementById('predictBtn').addEventListener('click', async () => {
-      const input = document.getElementById('imageInput');
-      if (input.files.length === 0) {
-        alert('Please select a JPEG image.');
-        return;
-      }
+    const predictBtn = document.getElementById('predictBtn');
+    if (predictBtn) {
+        predictBtn.addEventListener('click', async () => {
+            const input = document.getElementById('imageInput');
+            if (!input || input.files.length === 0) {
+                alert('Please select a JPEG image.');
+                return;
+            }
 
-      const file = input.files[0];
-      if (!file.type.startsWith('image/jpeg')) {
-        alert('Please upload a JPEG image.');
-        return;
-      }
+            const file = input.files[0];
+            if (!file.type.startsWith('image/jpeg')) {
+                alert('Please upload a JPEG image.');
+                return;
+            }
 
-      const formData = new FormData();
-      formData.append('image', file);
+            const formData = new FormData();
+            formData.append('image', file);
 
-      try {
-        const res = await fetch('https://animal-classifier-52010579282.northamerica-northeast1.run.app/predict', {
-          method: 'POST',
-          body: formData,
+            try {
+                const res = await fetch('https://animal-classifier-52010579282.northamerica-northeast1.run.app/predict', {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+                const data = await res.json();
+                const resultEl = document.getElementById('result');
+                if (resultEl) {
+                    resultEl.textContent = 'Predicted class: ' + data["Animal Prediction"];
+                }
+            } catch (error) {
+                const resultEl = document.getElementById('result');
+                if (resultEl) {
+                    resultEl.textContent = 'Error: ' + error.message;
+                }
+            }
         });
-        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-        const data = await res.json();
-        document.getElementById('result').textContent = 'Predicted class: ' + data["Animal Prediction"];
-      } catch (error) {
-        document.getElementById('result').textContent = 'Error: ' + error.message;
-      }
-    });
+    }
 </script>
 
 
