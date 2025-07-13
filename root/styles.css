@@ -23,13 +23,27 @@ body {
 
 }
 
-.prediction-block {
-    text-align : center;
+.flex {
+    display : flex
+}
+
+.input-block {
+    background-color : white;
+    text-align : left;
     padding : 10px;
     background-color : white;
     border : 2px solid black;
-    border-radius : 8px
+    border-radius : 8px;
 }
+
+.prediction-block {
+    text-align : left;
+    padding : 10px;
+    background-color : white;
+    border : 2px solid black;
+    border-radius : 8px;
+}
+
 
 .scrolling-images {
     overflow: hidden;

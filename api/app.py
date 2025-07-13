@@ -73,7 +73,7 @@ async def predict(image: UploadFile = File(...)):
     animal_name = prediction_dict.get(prediction, "Unknown")
     probs = probabilities.squeeze().tolist()
 
-    return JSONResponse(content={"Animal Prediction": animal_name, "Probabilities": probs })
+    return JSONResponse(content={"Animal Prediction": animal_name, "Probabilities": probs})
 
 # To run, save as app.py and run:
 # uvicorn app:app --host 0.0.0.0 --port 8080

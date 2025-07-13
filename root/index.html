@@ -48,13 +48,27 @@
     </ul>
 </div>
 
-<div class="prediction-block">
-    <h1></h1>
+<div class="flex">
+    <div class="input-block">
+        <input type="file" id="imageInput" accept=".jpeg, .jpg" /><br>
+        <button id="predictBtn">Predict</button>
+    </div>
 
-    <input type="file" id="imageInput" accept=".jpeg, .jpg" /><br>
-    <button id="predictBtn">Predict</button>
+    <div class="prediction-block">
 
-    <p id="result"></p>
+        <p id="result"></p>
+        <p id="dog_prob"></p>
+        <p id="horse_prob"></p>
+        <p id="elephant_prob"></p>
+        <p id="butterfly_prob"></p>
+        <p id="chicken_prob"></p>
+        <p id="cat_prob"></p>
+        <p id="cow_prob"></p>
+        <p id="sheep_prob"></p>
+        <p id="squirrel_prob"></p>
+        <p id="spider_prob"></p>
+
+    </div>
 </div>
 
 <script>
@@ -85,8 +99,32 @@
                 if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
                 const data = await res.json();
                 const resultEl = document.getElementById('result');
+
+                const resultDog = document.getElementById('dog_prob');
+                const resultHorse = document.getElementById('horse_prob');
+                const resultElephant = document.getElementById('elephant_prob');
+                const resultButterfly = document.getElementById('butterfly_prob');
+                const resultChicken = document.getElementById('chicken_prob');
+                const resultCat = document.getElementById('cat_prob');
+                const resultCow = document.getElementById('cow_prob');
+                const resultSheep = document.getElementById('sheep_prob');
+                const resultSquirrel = document.getElementById('squirrel_prob');
+                const resultSpider = document.getElementById('spider_prob');
+
                 if (resultEl) {
                     resultEl.textContent = 'Predicted class: ' + data["Animal Prediction"];
+
+                    resultDog.textContent = 'Dog: ' + (data["Probabilities"][0] * 100).toFixed(2) + '%';
+                    resultHorse.textContent = 'Horse: ' + (data["Probabilities"][1] * 100).toFixed(2) + '%';
+                    resultElephant.textContent = 'Elephant: ' + (data["Probabilities"][2] * 100).toFixed(2) + '%';
+                    resultButterfly.textContent = 'Butterfly: ' + (data["Probabilities"][3] * 100).toFixed(2) + '%';
+                    resultChicken.textContent = 'Chicken: ' + (data["Probabilities"][4] * 100).toFixed(2) + '%';
+                    resultCat.textContent = 'Cat: ' + (data["Probabilities"][5] * 100).toFixed(2) + '%';
+                    resultCow.textContent = 'Cow: ' + (data["Probabilities"][6] * 100).toFixed(2) + '%';
+                    resultSheep.textContent = 'Sheep: ' + (data["Probabilities"][7] * 100).toFixed(2) + '%';
+                    resultSquirrel.textContent = 'Squirrel: ' + (data["Probabilities"][8] * 100).toFixed(2) + '%';
+                    resultSpider.textContent = 'Spider: ' + (data["Probabilities"][9] * 100).toFixed(2) + '%';
+
                 }
             } catch (error) {
                 const resultEl = document.getElementById('result');
