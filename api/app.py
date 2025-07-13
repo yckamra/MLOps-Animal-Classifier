@@ -6,6 +6,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 import io
 from fastapi.middleware.cors import CORSMiddleware
+import torch.nn.functional as F
 
 app = FastAPI()
 
@@ -53,6 +54,7 @@ async def predict(image: UploadFile = File(...)):
 
     with torch.no_grad():
         outputs = model(input_tensor)
+        probabilities = F.softmax(outputs, dim=1)
         _, preds = torch.max(outputs, 1)
 
     prediction = preds.item()
@@ -69,7 +71,9 @@ async def predict(image: UploadFile = File(...)):
         9 : "Spider"
     }
     animal_name = prediction_dict.get(prediction, "Unknown")
-    return JSONResponse(content={"Animal Prediction": animal_name})
+    probs = probabilities.squeeze().tolist()
+
+    return JSONResponse(content={"Animal Prediction": animal_name, "Probabilities": probs })
 
 # To run, save as app.py and run:
 # uvicorn app:app --host 0.0.0.0 --port 8080
