@@ -28,7 +28,8 @@
             document.getElementById('response').textContent = 'Error: ' + error.message;
         }
     });
-        document.getElementById('predictBtn').addEventListener('click', async () => {
+
+    document.getElementById('predictBtn').addEventListener('click', async () => {
       const input = document.getElementById('imageInput');
       if (input.files.length === 0) {
         alert('Please select a JPEG image.');
@@ -51,7 +52,7 @@
         });
         if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
         const data = await res.json();
-        document.getElementById('result').textContent = 'Predicted class: ' + data.predicted_class;
+        document.getElementById('result').textContent = 'Predicted class: ' + data["Animal Prediction"];
       } catch (error) {
         document.getElementById('result').textContent = 'Error: ' + error.message;
       }
