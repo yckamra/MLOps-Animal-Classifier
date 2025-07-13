@@ -22,5 +22,44 @@
         }
     });
 </script>
+
+  <h1>Upload JPEG for Prediction</h1>
+
+  <input type="file" id="imageInput" accept=".jpeg, .jpg" />
+  <button id="predictBtn">Predict</button>
+
+  <p id="result"></p>
+
+  <script>
+    document.getElementById('predictBtn').addEventListener('click', async () => {
+      const input = document.getElementById('imageInput');
+      if (input.files.length === 0) {
+        alert('Please select a JPEG image.');
+        return;
+      }
+
+      const file = input.files[0];
+      if (!file.type.startsWith('image/jpeg')) {
+        alert('Please upload a JPEG image.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const res = await fetch('https://animal-classifier-52010579282.northamerica-northeast1.run.app/predict', {
+          method: 'POST',
+          body: formData,
+        });
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        const data = await res.json();
+        document.getElementById('result').textContent = 'Predicted class: ' + data.predicted_class;
+      } catch (error) {
+        document.getElementById('result').textContent = 'Error: ' + error.message;
+      }
+    });
+  </script>
+
 </body>
 </html>
