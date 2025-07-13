@@ -55,7 +55,21 @@ async def predict(image: UploadFile = File(...)):
         outputs = model(input_tensor)
         _, preds = torch.max(outputs, 1)
 
-    return JSONResponse(content={"predicted_class": preds.item()})
+    prediction = preds.item()
+    prediction_dict = {
+        0 : "Dog",
+        1 : "Horse",
+        2 : "Elephant",
+        3 : "Butterfly",
+        4 : "Chicken",
+        5 : "Cat",
+        6 : "Cow",
+        7 : "Sheep",
+        8 : "Squirrel",
+        9 : "Spider"
+    }
+    animal_name = prediction_dict.get(prediction, "Unknown")
+    return JSONResponse(content={"Animal Prediction": animal_name})
 
 # To run, save as app.py and run:
 # uvicorn app:app --host 0.0.0.0 --port 8080
