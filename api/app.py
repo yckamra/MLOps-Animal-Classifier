@@ -5,9 +5,18 @@ from PIL import Image
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 import io
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Add this CORS middleware to allow all origins:
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # allow all HTTP methods (GET, POST, etc)
+    allow_headers=["*"],  # allow all headers
+)
 
 # Model URI (GCS path)
 MODEL_URI = "gs://mlops-animal-classifier/models/models/m-f2878fa41e5c4dc089e112c447a862ab/artifacts/data/model.pth"
