@@ -20,16 +20,6 @@
     <p id="result"></p>
 </div>
 <script>
-    document.getElementById('callApi').addEventListener('click', async () => {
-        try {
-            const res = await fetch('https://animal-classifier-52010579282.northamerica-northeast1.run.app/hello_world');
-            if (!res.ok) throw new Error('Network response was not ok');
-            const data = await res.json();
-            document.getElementById('response').textContent = data.message;
-        } catch (error) {
-            document.getElementById('response').textContent = 'Error: ' + error.message;
-        }
-    });
 
     document.getElementById('predictBtn').addEventListener('click', async () => {
       const input = document.getElementById('imageInput');
