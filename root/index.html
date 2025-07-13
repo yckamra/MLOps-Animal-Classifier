@@ -3,22 +3,60 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Landing Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal 10 API Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
-<div class="nav-bar">
-    <p>Animal10 Classifier API Test Page </p>
-</div>
-<div>
-    <h1>Animal Prediction</h1>
+<div class="intro-wrapper">
 
-    <input type="file" id="imageInput" accept=".jpeg, .jpg" />
+    <div class="title">
+        <h1>Animal10 API Prediction Demo</h1>
+    </div>
+
+    <div class="scrolling-images">
+        <div class="scrolling-track">
+            <img src="img/dog.jpeg" alt="dog">
+            <img src="img/horse.jpeg" alt="horse">
+            <img src="img/elephant.jpg" alt="elephant">
+            <img src="img/butterfly.jpg" alt="butterfly">
+            <img src="img/chicken.jpeg" alt="chicken">
+            <img src="img/cat.jpeg" alt="cat">
+            <img src="img/sheep.jpg" alt="sheep">
+            <img src="img/squirrel.jpeg" alt="squirrel">
+            <img src="img/spider.jpg" alt="spider">
+            <!--Duplicates for carousel-->
+            <img src="img/dog.jpeg" alt="dog">
+            <img src="img/horse.jpeg" alt="horse">
+            <img src="img/elephant.jpg" alt="elephant">
+            <img src="img/butterfly.jpg" alt="butterfly">
+            <img src="img/chicken.jpeg" alt="chicken">
+            <img src="img/cat.jpeg" alt="cat">
+            <img src="img/sheep.jpg" alt="sheep">
+            <img src="img/squirrel.jpeg" alt="squirrel">
+            <img src="img/spider.jpg" alt="spider">
+        </div>
+    </div>
+
+    <h2>Information:</h2>
+    <ul>
+        <li>Images should be in <b>.jpeg</b> or <b>.jpg</b> format</li>
+        <li>Accepted animals: <b>butterfly, cat, chicken, cow, dog, elephant, horse, sheep, spider, squirrel</b></li>
+        <li>Model architecture: <b>ResNet34</b> Convolutional Neural Network pre-trained on the ImageNet1k dataset and was fine-tuned on the Animal10 dataset</li>
+    </ul>
+</div>
+
+<div class="prediction-block">
+    <h1></h1>
+
+    <input type="file" id="imageInput" accept=".jpeg, .jpg" /><br>
     <button id="predictBtn">Predict</button>
 
     <p id="result"></p>
 </div>
+
 <script>
 
     const predictBtn = document.getElementById('predictBtn');

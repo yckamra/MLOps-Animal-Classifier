@@ -1,5 +1,7 @@
 venv/
 .idea/
--e/
--v/
+-e
+-v
 mlops-animal-classifier:latest/
+.DS_Store
+root/img/

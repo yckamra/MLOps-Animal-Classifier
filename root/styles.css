@@ -1,9 +1,62 @@
-* {
-    padding : 0;
-    margin : 0
+body {
+
+    font-family: 'Roboto', sans-serif;
+
+    background-image: url('img/background.jpg'); /* Ensure path is correct */
+    background-size: cover;       /* Stretch image to fill the screen */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* No tiling */
+    background-attachment: fixed; /* Optional: adds a subtle scroll effect */
+
+    background-color : white
 }
 
-.nav-bar {
-    background-color : orange
+.title {
+    text-align : center
+}
 
+.intro-wrapper {
+    background-color : white;
+    border : 2px solid black;
+    padding : 10px;
+    border-radius : 8px
+
+}
+
+.prediction-block {
+    text-align : center;
+    padding : 10px;
+    background-color : white;
+    border : 2px solid black;
+    border-radius : 8px
+}
+
+.scrolling-images {
+    overflow: hidden;
+    width: 100%;
+    background: #f0f0f0; /* optional background */
+    border-radius: 8px;   /* optional */
+}
+
+.scrolling-track {
+    display: flex;
+    width: max-content;  /* allows track to be as wide as its content */
+    animation: scroll-left 20s linear infinite;
+}
+
+.scrolling-track img {
+    max-height: 150px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    border-radius: 8px;
+}
+
+/* Animation */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
