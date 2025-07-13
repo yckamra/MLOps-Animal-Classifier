@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
-<h1>API Test</h1>
-<button id="callApi">Call Hello World API</button>
-<p id="response"></p>
+<div class="nav-bar">
+    <p>Animal10 Classifier API Test Page </p>
+</div>
+<div>
+    <h1>Animal Prediction</h1>
 
-<h1>Upload JPEG for Prediction</h1>
+    <input type="file" id="imageInput" accept=".jpeg, .jpg" />
+    <button id="predictBtn">Predict</button>
 
-<input type="file" id="imageInput" accept=".jpeg, .jpg" />
-<button id="predictBtn">Predict</button>
-
-<p id="result"></p>
-
+    <p id="result"></p>
+</div>
 <script>
     document.getElementById('callApi').addEventListener('click', async () => {
         try {
